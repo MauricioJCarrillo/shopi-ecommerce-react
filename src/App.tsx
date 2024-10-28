@@ -5,6 +5,7 @@ import { MyOrder } from "./pages/MyOrder/MyOrder.tsx";
 import { MyOrders } from "./pages/MyOrders/MyOrders.tsx";
 import { SignIn } from "./pages/SignIn/SignIn.tsx";
 import { NotFound } from "./pages/NotFound/NotFound";
+import { Navbar } from "./components/Navbar/Navbar.tsx";
 
 // El valor de retorno de useRoutes puede ser JSX.Element | null, ya que useRoutes devolverá null si no hay rutas coincidentes
 const AppRoutes = (): JSX.Element | null => {
@@ -23,6 +24,7 @@ const AppRoutes = (): JSX.Element | null => {
 export const App = (): JSX.Element => {
   return (
     <BrowserRouter>
+      <Navbar />
       <AppRoutes />
     </BrowserRouter>
   );
