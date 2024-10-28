@@ -1,7 +1,3 @@
 export const Home = (): JSX.Element => {
-  return (
-    <>
-      <h1 className="bg-red-100">Home</h1>
-    </>
-  );
+  return <h1>Home</h1>;
 };
