@@ -1,9 +1,5 @@
-import { FC, ReactNode } from "react";
+type Props = { children: JSX.Element };
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export const Layout: FC<LayoutProps> = ({ children }) => {
+export const Layout = ({ children }: Props) => {
   return <main className="mt-20 flex flex-col items-center">{children}</main>;
 };
