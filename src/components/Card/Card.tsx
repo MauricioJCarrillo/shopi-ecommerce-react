@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+
 interface CardProps {
   category: string;
   image: string;
@@ -11,6 +14,12 @@ export const Card = ({
   price,
   title,
 }: CardProps): JSX.Element => {
+  const { setCounter } = useContext(ShoppingCartContext);
+
+  const addItemToCart = () => {
+    setCounter((prev: number): number => prev + 1);
+  };
+
   return (
     <>
       <article className="h-60 w-56 cursor-pointer rounded-lg bg-white">
@@ -23,7 +32,10 @@ export const Card = ({
             src={image}
             alt={title}
           />
-          <button className="absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full bg-white p-1">
+          <button
+            className="absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full bg-white p-1 hover:bg-blue-500"
+            onClick={addItemToCart}
+          >
             +
           </button>
         </figure>
