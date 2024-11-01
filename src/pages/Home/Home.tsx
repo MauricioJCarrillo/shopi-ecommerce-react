@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { apiUrl } from "../../api";
+import { ProductDetail } from "../../components/ProductDetail/ProductDetail.tsx";
 
 interface ItemType {
   id: number;
@@ -50,6 +51,7 @@ export const Home = (): JSX.Element => {
           );
         })}
       </section>
+      <ProductDetail />
     </>
   );
 };
