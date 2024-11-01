@@ -15,15 +15,19 @@ export const Card = ({
   price,
   title,
 }: CardProps): JSX.Element => {
-  const { setCounter } = useContext(ShoppingCartContext);
+  const { setCounter, openProductDetail } = useContext(ShoppingCartContext);
 
-  const addItemToCart = () => {
+  const addItemToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setCounter((prev: number): number => prev + 1);
   };
 
   return (
     <>
-      <article className="h-60 w-56 cursor-pointer rounded-lg bg-white">
+      <article
+        className="h-60 w-56 cursor-pointer rounded-lg bg-white"
+        onClick={() => openProductDetail()}
+      >
         <figure className="relative mb-2 h-4/5 w-full">
           <figcaption className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/60 px-3 py-0.5 text-xs text-black">
             {category}
