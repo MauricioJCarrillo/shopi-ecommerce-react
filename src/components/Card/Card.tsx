@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 interface CardProps {
@@ -36,7 +37,7 @@ export const Card = ({
             className="absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full bg-white p-1 hover:bg-blue-500"
             onClick={addItemToCart}
           >
-            +
+            <PlusIcon className="h-6 w-6 text-black" />
           </button>
         </figure>
         <p className="flex items-center justify-between">
