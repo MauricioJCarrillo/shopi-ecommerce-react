@@ -3,8 +3,10 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 export const ProductDetail = (): JSX.Element => {
-  const { closeProductDetail, isProductDetailOpen } =
+  const { closeProductDetail, isProductDetailOpen, productToShow } =
     useContext(ShoppingCartContext);
+
+  const { images, price, title, description } = productToShow;
 
   return (
     <>
@@ -17,7 +19,18 @@ export const ProductDetail = (): JSX.Element => {
               onClick={closeProductDetail}
             />
           </section>
-          <article></article>
+          <figure className="px-6">
+            <img
+              className="h-full w-full rounded-lg"
+              src={images[0]}
+              alt={title}
+            />
+          </figure>
+          <p className="flex flex-col p-6">
+            <span className="mb-2 text-2xl font-medium">${price}</span>
+            <span className="text-md font-medium">{title}</span>
+            <span className="text-sm font-light">{description}</span>
+          </p>
         </aside>
       )}
     </>

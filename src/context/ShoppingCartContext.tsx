@@ -1,4 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { ProductType } from "../models/Products";
 
 type Props = {
   children: JSX.Element;
@@ -10,6 +11,8 @@ type ShoppingCartContextType = {
   isProductDetailOpen: boolean;
   closeProductDetail: () => void;
   openProductDetail: () => void;
+  productToShow: ProductType;
+  setProductToShow: Dispatch<SetStateAction<ProductType>>;
 };
 
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
@@ -17,7 +20,10 @@ const ShoppingCartContext = createContext<ShoppingCartContextType>(
 );
 
 const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
+  // Shopping Cart: Increment quantity
   const [counter, setCounter] = useState<number>(0);
+
+  // Product Detail: Open / Close
   const [isProductDetailOpen, setIsProductDetailOpen] =
     useState<boolean>(false);
 
@@ -29,6 +35,11 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
     setIsProductDetailOpen(true);
   };
 
+  // Product Detail: Show product detail
+  const [productToShow, setProductToShow] = useState<ProductType>(
+    {} as ProductType,
+  );
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -37,6 +48,8 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
         isProductDetailOpen,
         closeProductDetail,
         openProductDetail,
+        productToShow,
+        setProductToShow,
       }}
     >
       {children}
