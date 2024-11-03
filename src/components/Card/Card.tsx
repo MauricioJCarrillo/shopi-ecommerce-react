@@ -1,21 +1,12 @@
 import { useContext } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { ProductType } from "../../models/Products";
 
-interface CardProps {
-  category: string;
-  image: string;
-  price: number;
-  title: string;
-}
-
-export const Card = ({
-  category,
-  image,
-  price,
-  title,
-}: CardProps): JSX.Element => {
+export const Card = (product: ProductType): JSX.Element => {
   const { setCounter, openProductDetail } = useContext(ShoppingCartContext);
+
+  const { category, images, title, price } = product;
 
   const addItemToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -30,11 +21,11 @@ export const Card = ({
       >
         <figure className="relative mb-2 h-4/5 w-full">
           <figcaption className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/60 px-3 py-0.5 text-xs text-black">
-            {category}
+            {category.name}
           </figcaption>
           <img
             className="h-full w-full rounded-lg object-cover"
-            src={image}
+            src={images[0]}
             alt={title}
           />
           <button
