@@ -2,28 +2,10 @@ import { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { apiUrl } from "../../api";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.tsx";
-
-interface ItemType {
-  id: number;
-  category: CategoryType;
-  creationAt: string; // ISO date string
-  description: string;
-  images: string[];
-  price: number;
-  title: string;
-  updatedAt: string; // ISO date string
-}
-
-interface CategoryType {
-  id: number;
-  creationAt: string; // ISO date string
-  image: string;
-  name: string;
-  updatedAt: string; // ISO date string
-}
+import { ProductType } from "../../models/Products.tsx";
 
 export const Home = (): JSX.Element => {
-  const [items, setItems] = useState<ItemType[]>([]);
+  const [items, setItems] = useState<ProductType[]>([]);
 
   useEffect(() => {
     fetch(`${apiUrl}/products`)
@@ -39,7 +21,7 @@ export const Home = (): JSX.Element => {
     <>
       <h1>Home</h1>
       <section className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
-        {items?.map((item: ItemType) => {
+        {items?.map((item: ProductType) => {
           return (
             <Card
               key={item.id}
