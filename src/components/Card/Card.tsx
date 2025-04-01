@@ -4,14 +4,27 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { ProductType } from "../../models/Products";
 
 export const Card = (product: ProductType): JSX.Element => {
-  const { setCounter, openProductDetail, setProductToShow } =
-    useContext(ShoppingCartContext);
+  const {
+    setCounter,
+    openProductDetail,
+    closeProductDetail,
+    setProductToShow,
+    cartProducts,
+    setCartProducts,
+    openCheckoutSideMenu,
+  } = useContext(ShoppingCartContext);
 
   const { category, images, title, price } = product;
 
-  const addItemToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const addItemToCart = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    productData: ProductType,
+  ) => {
     event.stopPropagation();
     setCounter((prev: number): number => prev + 1);
+    setCartProducts([...cartProducts, productData]);
+    closeProductDetail();
+    openCheckoutSideMenu();
   };
 
   const showProduct = () => {
@@ -38,7 +51,7 @@ export const Card = (product: ProductType): JSX.Element => {
           />
           <button
             className="absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full bg-white p-1 hover:bg-blue-500"
-            onClick={addItemToCart}
+            onClick={(event) => addItemToCart(event, product)}
           >
             <PlusIcon className="h-6 w-6 text-black" />
           </button>

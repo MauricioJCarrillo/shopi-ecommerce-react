@@ -3,6 +3,7 @@ import { Card } from "../../components/Card/Card";
 import { apiUrl } from "../../api";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.tsx";
 import { ProductType } from "../../models/Products.tsx";
+import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSideMenu.tsx";
 
 export const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -26,6 +27,7 @@ export const Home = (): JSX.Element => {
         })}
       </section>
       <ProductDetail />
+      <CheckoutSideMenu />
     </>
   );
 };

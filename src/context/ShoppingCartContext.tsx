@@ -13,6 +13,11 @@ type ShoppingCartContextType = {
   openProductDetail: () => void;
   productToShow: ProductType;
   setProductToShow: Dispatch<SetStateAction<ProductType>>;
+  cartProducts: ProductType[];
+  setCartProducts: Dispatch<SetStateAction<ProductType[]>>;
+  isCheckoutSideMenuOpen: boolean;
+  closeCheckoutSideMenu: () => void;
+  openCheckoutSideMenu: () => void;
 };
 
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
@@ -40,6 +45,21 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
     {} as ProductType,
   );
 
+  // Shopping Cart: Adding products to Cart
+  const [cartProducts, setCartProducts] = useState<ProductType[]>([]);
+
+  // Checkout Side Menu: Open / Close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] =
+    useState<boolean>(false);
+
+  const closeCheckoutSideMenu = () => {
+    setIsCheckoutSideMenuOpen(false);
+  };
+
+  const openCheckoutSideMenu = () => {
+    setIsCheckoutSideMenuOpen(true);
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -50,6 +70,11 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
         openProductDetail,
         productToShow,
         setProductToShow,
+        cartProducts,
+        setCartProducts,
+        isCheckoutSideMenuOpen,
+        closeCheckoutSideMenu,
+        openCheckoutSideMenu,
       }}
     >
       {children}
