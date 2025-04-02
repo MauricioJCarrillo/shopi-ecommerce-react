@@ -19,7 +19,7 @@ export const CheckoutSideMenu = (): JSX.Element => {
             />
           </section>
 
-          <section className="p-6">
+          <section className="overflow-y-scroll p-6">
             {cartProducts?.map((product) => (
               <OrderCard
                 key={product.id}

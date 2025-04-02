@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { ProductType } from "../../models/Products";
 
@@ -14,7 +14,7 @@ export const Card = (product: ProductType): JSX.Element => {
     openCheckoutSideMenu,
   } = useContext(ShoppingCartContext);
 
-  const { category, images, title, price } = product;
+  const { id, category, images, title, price } = product;
 
   const addItemToCart = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -31,6 +31,8 @@ export const Card = (product: ProductType): JSX.Element => {
     openProductDetail();
     setProductToShow({ ...product });
   };
+
+  const isInCart = cartProducts.some((product) => product.id === id);
 
   return (
     <>
@@ -50,10 +52,17 @@ export const Card = (product: ProductType): JSX.Element => {
             alt={title}
           />
           <button
-            className="absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full bg-white p-1 hover:bg-blue-500"
+            className={`hover:bg-blue-500" + absolute right-0 top-0 m-2 flex h-6 w-6 items-center justify-center rounded-full p-1 ${
+              isInCart ? "bg-black" : "bg-white"
+            }`}
             onClick={(event) => addItemToCart(event, product)}
+            disabled={isInCart}
           >
-            <PlusIcon className="h-6 w-6 text-black" />
+            {isInCart ? (
+              <CheckIcon className="h-6 w-6 text-white" />
+            ) : (
+              <PlusIcon className="h-6 w-6 text-black" />
+            )}
           </button>
         </figure>
         <p className="flex items-center justify-between">
