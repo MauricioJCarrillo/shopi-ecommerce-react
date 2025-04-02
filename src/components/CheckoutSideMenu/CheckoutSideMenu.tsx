@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { OrderCard } from "../OrderCard/OrderCard";
 
 export const CheckoutSideMenu = (): JSX.Element => {
   const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts } =
@@ -18,23 +19,16 @@ export const CheckoutSideMenu = (): JSX.Element => {
             />
           </section>
 
-          {cartProducts?.map((cardProduct) => (
-            <div>
-              <figure>
-                <img
-                  className="h-10 w-10"
-                  src={cardProduct.images[0]}
-                  alt={cardProduct.title}
-                />
-              </figure>
-              <p className="flex flex-col p-6">
-                <span className="mb-2 text-2xl font-medium">
-                  ${cardProduct.price}
-                </span>
-                <span className="text-md font-medium">{cardProduct.title}</span>
-              </p>
-            </div>
-          ))}
+          <section className="p-6">
+            {cartProducts?.map((product) => (
+              <OrderCard
+                key={product.id}
+                title={product.title}
+                imageURL={product.images[0]}
+                price={product.price}
+              />
+            ))}
+          </section>
         </aside>
       )}
     </>
