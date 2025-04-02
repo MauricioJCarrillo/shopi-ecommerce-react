@@ -4,8 +4,19 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { OrderCard } from "../OrderCard/OrderCard";
 
 export const CheckoutSideMenu = (): JSX.Element => {
-  const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts } =
-    useContext(ShoppingCartContext);
+  const {
+    isCheckoutSideMenuOpen,
+    closeCheckoutSideMenu,
+    cartProducts,
+    setCartProducts,
+    setCounter,
+  } = useContext(ShoppingCartContext);
+
+  const handleDelete = (id: number) => {
+    const updatedCart = cartProducts.filter((product) => product.id !== id);
+    setCartProducts(updatedCart);
+    setCounter((prev: number): number => prev - 1);
+  };
 
   return (
     <>
@@ -23,9 +34,11 @@ export const CheckoutSideMenu = (): JSX.Element => {
             {cartProducts?.map((product) => (
               <OrderCard
                 key={product.id}
+                id={product.id}
                 title={product.title}
                 imageURL={product.images[0]}
                 price={product.price}
+                handleDelete={handleDelete}
               />
             ))}
           </section>
