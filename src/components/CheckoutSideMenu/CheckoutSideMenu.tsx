@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { OrderCard } from "../OrderCard/OrderCard";
+import { calculateTotalPrice } from "../../utils/totalPrice.ts";
 
 export const CheckoutSideMenu = (): JSX.Element => {
   const {
@@ -41,6 +42,15 @@ export const CheckoutSideMenu = (): JSX.Element => {
                 handleDelete={handleDelete}
               />
             ))}
+          </section>
+
+          <section className="px-6">
+            <p className="flex items-center justify-between">
+              <span className="text-2xl font-light">Total</span>
+              <span className="text-2xl font-bold">
+                ${calculateTotalPrice(cartProducts)}
+              </span>
+            </p>
           </section>
         </aside>
       )}
