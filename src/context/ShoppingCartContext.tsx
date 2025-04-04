@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { ProductType } from "../models/Products";
+import { OrderType, ProductType } from "../models/Products";
 
 type Props = {
   children: JSX.Element;
@@ -18,6 +18,8 @@ type ShoppingCartContextType = {
   isCheckoutSideMenuOpen: boolean;
   closeCheckoutSideMenu: () => void;
   openCheckoutSideMenu: () => void;
+  order: OrderType[];
+  setOrder: Dispatch<SetStateAction<OrderType[]>>;
 };
 
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
@@ -60,6 +62,9 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
     setIsCheckoutSideMenuOpen(true);
   };
 
+  // Shopping Cart: My Order
+  const [order, setOrder] = useState<OrderType[]>([]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -75,6 +80,8 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
         isCheckoutSideMenuOpen,
         closeCheckoutSideMenu,
         openCheckoutSideMenu,
+        order,
+        setOrder,
       }}
     >
       {children}

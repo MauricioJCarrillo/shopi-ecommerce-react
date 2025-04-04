@@ -16,3 +16,10 @@ export interface CategoryType {
   name: string;
   updatedAt: string; // ISO date string
 }
+
+export interface OrderType {
+  date: Date;
+  products: ProductType[];
+  totalProducts: number;
+  totalPrice: number;
+}
