@@ -4,7 +4,7 @@ interface OrderCardProps {
   title: string;
   imageURL: string;
   price: number;
-  handleDelete: (id: number) => void;
+  handleDelete?: (id: number) => void;
 }
 
 export const OrderCard = ({
@@ -27,10 +27,13 @@ export const OrderCard = ({
         <span className="text-md font-light">{title}</span>
         <span className="text-2xl font-medium">${price}</span>
       </p>
-      <TrashIcon
-        className="h-6 w-6 cursor-pointer text-black"
-        onClick={() => handleDelete(id)}
-      />
+
+      {handleDelete && (
+        <TrashIcon
+          className="h-6 w-6 cursor-pointer text-black"
+          onClick={() => handleDelete(id)}
+        />
+      )}
     </div>
   );
 };

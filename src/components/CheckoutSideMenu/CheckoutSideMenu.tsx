@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { OrderCard } from "../OrderCard/OrderCard";
@@ -49,16 +50,20 @@ export const CheckoutSideMenu = (): JSX.Element => {
           </section>
 
           <section className="flex-1 overflow-y-scroll p-6">
-            {cartProducts?.map((product) => (
-              <OrderCard
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                imageURL={product.images[0]}
-                price={product.price}
-                handleDelete={handleDelete}
-              />
-            ))}
+            {cartProducts && cartProducts.length > 0 ? (
+              cartProducts?.map((product) => (
+                <OrderCard
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  imageURL={product.images[0]}
+                  price={product.price}
+                  handleDelete={handleDelete}
+                />
+              ))
+            ) : (
+              <p>There are not products in the cart</p>
+            )}
           </section>
 
           <section className="sticky bottom-0 left-0 right-0 p-6">
@@ -68,12 +73,15 @@ export const CheckoutSideMenu = (): JSX.Element => {
                 ${calculateTotalPrice(cartProducts)}
               </span>
             </p>
-            <button
-              className="w-full rounded-lg bg-black px-3 py-2 text-white"
-              onClick={handleCheckout}
-            >
-              Checkout
-            </button>
+            <Link to="/my-orders/last">
+              <button
+                className="w-full rounded-lg bg-black px-3 py-2 text-white"
+                onClick={handleCheckout}
+                disabled={cartProducts.length === 0}
+              >
+                Checkout
+              </button>
+            </Link>
           </section>
         </aside>
       )}
