@@ -25,6 +25,7 @@ export const CheckoutSideMenu = (): JSX.Element => {
   const handleCheckout = () => {
     console.log("Proceeding to checkout...");
     const orderToAdd = {
+      id: crypto.randomUUID(),
       date: new Date(),
       products: cartProducts,
       totalProducts: cartProducts.length,

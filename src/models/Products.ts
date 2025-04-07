@@ -18,6 +18,7 @@ export interface CategoryType {
 }
 
 export interface OrderType {
+  id: string;
   date: Date;
   products: ProductType[];
   totalProducts: number;
