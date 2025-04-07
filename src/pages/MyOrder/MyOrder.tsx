@@ -1,6 +1,8 @@
 import { useContext } from "react";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { OrderCard } from "../../components/OrderCard/OrderCard";
+import { Link } from "react-router-dom";
 
 export const MyOrder = (): JSX.Element => {
   const { order } = useContext(ShoppingCartContext);
@@ -8,7 +10,12 @@ export const MyOrder = (): JSX.Element => {
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">My Order</h1>
+      <div className="relative mb-6 flex w-80 items-center justify-center">
+        <Link to="/my-orders" className="absolute left-0">
+          <ChevronLeftIcon className="h-6 w-6 cursor-pointer text-black" />
+        </Link>
+        <h1 className="text-2xl font-normal">My Order</h1>
+      </div>
       <section className="flex w-80 flex-col">
         {order &&
           order.length > 0 &&
