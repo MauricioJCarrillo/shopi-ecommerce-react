@@ -4,13 +4,13 @@ import { OrdersCard } from "../../components/OrdersCard/OrdersCard";
 import { Link } from "react-router-dom";
 
 export const MyOrders = (): JSX.Element => {
-  const { order } = useContext(ShoppingCartContext);
+  const { orders } = useContext(ShoppingCartContext);
 
   return (
     <>
       <h1 className="mb-6 text-2xl font-normal">My Orders</h1>
 
-      {order?.map((order) => {
+      {orders?.map((order) => {
         return (
           <Link to={`/my-orders/${order.id}`} key={order.id}>
             <OrdersCard

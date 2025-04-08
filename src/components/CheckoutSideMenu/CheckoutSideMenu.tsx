@@ -13,7 +13,7 @@ export const CheckoutSideMenu = (): JSX.Element => {
     cartProducts,
     setCartProducts,
     setCounter,
-    setOrder,
+    setOrders,
   } = useContext(ShoppingCartContext);
 
   const handleDelete = (id: number) => {
@@ -32,7 +32,7 @@ export const CheckoutSideMenu = (): JSX.Element => {
       totalPrice: calculateTotalPrice(cartProducts),
     };
 
-    setOrder((prev: OrderType[]) => [...prev, orderToAdd]);
+    setOrders((prev: OrderType[]) => [...prev, orderToAdd]);
     setCartProducts([]);
     setCounter(0);
     closeCheckoutSideMenu();

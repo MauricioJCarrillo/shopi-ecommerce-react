@@ -5,8 +5,8 @@ import { OrderCard } from "../../components/OrderCard/OrderCard";
 import { Link } from "react-router-dom";
 
 export const MyOrder = (): JSX.Element => {
-  const { order } = useContext(ShoppingCartContext);
-  console.log("Order", order);
+  const { orders } = useContext(ShoppingCartContext);
+  console.log("Orders", orders);
 
   return (
     <>
@@ -17,9 +17,9 @@ export const MyOrder = (): JSX.Element => {
         <h1 className="text-2xl font-normal">My Order</h1>
       </div>
       <section className="flex w-80 flex-col">
-        {order &&
-          order.length > 0 &&
-          order?.map((product) => {
+        {orders &&
+          orders.length > 0 &&
+          orders?.map((product) => {
             return (
               <div key={product.date.toLocaleTimeString()}>
                 <p className="flex items-center justify-between pb-2">

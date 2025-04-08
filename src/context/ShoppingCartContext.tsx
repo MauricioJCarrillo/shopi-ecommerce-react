@@ -18,8 +18,8 @@ type ShoppingCartContextType = {
   isCheckoutSideMenuOpen: boolean;
   closeCheckoutSideMenu: () => void;
   openCheckoutSideMenu: () => void;
-  order: OrderType[];
-  setOrder: Dispatch<SetStateAction<OrderType[]>>;
+  orders: OrderType[];
+  setOrders: Dispatch<SetStateAction<OrderType[]>>;
 };
 
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
@@ -62,8 +62,8 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
     setIsCheckoutSideMenuOpen(true);
   };
 
-  // Shopping Cart: My Order
-  const [order, setOrder] = useState<OrderType[]>([]);
+  // Shopping Cart: My orders
+  const [orders, setOrders] = useState<OrderType[]>([]);
 
   return (
     <ShoppingCartContext.Provider
@@ -80,8 +80,8 @@ const ShoppingCartProvider = ({ children }: Props): JSX.Element => {
         isCheckoutSideMenuOpen,
         closeCheckoutSideMenu,
         openCheckoutSideMenu,
-        order,
-        setOrder,
+        orders,
+        setOrders,
       }}
     >
       {children}
