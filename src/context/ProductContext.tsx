@@ -15,6 +15,8 @@ type Props = {
 type ProductContextType = {
   products: ProductType[];
   setProducts: Dispatch<SetStateAction<ProductType[]>>;
+  searchProduct: string;
+  setSearchProduct: Dispatch<SetStateAction<string>>;
 };
 
 const ProductContext = createContext<ProductContextType>(
@@ -23,6 +25,7 @@ const ProductContext = createContext<ProductContextType>(
 
 const ProductProvider = ({ children }: Props): JSX.Element => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [searchProduct, setSearchProduct] = useState<string>("");
 
   useEffect(() => {
     fetch(`${apiUrl}/products`)
@@ -39,6 +42,8 @@ const ProductProvider = ({ children }: Props): JSX.Element => {
       value={{
         products,
         setProducts,
+        searchProduct,
+        setSearchProduct,
       }}
     >
       {children}
