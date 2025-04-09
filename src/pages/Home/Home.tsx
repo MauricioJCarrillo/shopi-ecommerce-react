@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Card } from "../../components/Card/Card";
-import { apiUrl } from "../../api";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.tsx";
 import { ProductType } from "../../models/Products.tsx";
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSideMenu.tsx";
+import { ProductContext } from "../../context/ProductContext.tsx";
 
 export const Home = (): JSX.Element => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-
-  useEffect(() => {
-    fetch(`${apiUrl}/products`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("data", data);
-        return setProducts(data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  const { products } = useContext(ProductContext);
 
   return (
     <>
-      <h1>Home</h1>
+      <h1 className="mb-6 text-2xl font-normal">Home</h1>
       <section className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
         {products?.map((product: ProductType) => {
           return <Card key={product.id} {...product} />;

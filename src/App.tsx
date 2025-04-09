@@ -8,6 +8,7 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { Navbar } from "./components/Navbar/Navbar.tsx";
 import { Layout } from "./components/Layout/Layout.tsx";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext.tsx";
+import { ProductProvider } from "./context/ProductContext.tsx";
 
 // El valor de retorno de useRoutes puede ser JSX.Element | null, ya que useRoutes devolverá null si no hay rutas coincidentes
 const AppRoutes = (): JSX.Element | null => {
@@ -28,12 +29,14 @@ const AppRoutes = (): JSX.Element | null => {
 export const App = (): JSX.Element => {
   return (
     <ShoppingCartProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Layout>
-          <AppRoutes />
-        </Layout>
-      </BrowserRouter>
+      <ProductProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Layout>
+            <AppRoutes />
+          </Layout>
+        </BrowserRouter>
+      </ProductProvider>
     </ShoppingCartProvider>
   );
 };
