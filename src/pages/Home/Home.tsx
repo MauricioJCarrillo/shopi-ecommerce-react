@@ -6,10 +6,8 @@ import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSide
 import { ProductContext } from "../../context/ProductContext.tsx";
 
 export const Home = (): JSX.Element => {
-  const { products, searchProduct, setSearchProduct } =
+  const { searchProduct, setSearchProduct, filteredProducts } =
     useContext(ProductContext);
-
-  console.log("Input value: ", searchProduct);
 
   return (
     <>
@@ -22,9 +20,15 @@ export const Home = (): JSX.Element => {
         onChange={(e) => setSearchProduct(e.target.value)}
       />
       <section className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
-        {products?.map((product: ProductType) => {
-          return <Card key={product.id} {...product} />;
-        })}
+        {filteredProducts?.length > 0 ? (
+          filteredProducts?.map((product: ProductType) => {
+            return <Card key={product.id} {...product} />;
+          })
+        ) : (
+          <p className="col-span-4 text-center text-2xl font-light">
+            No products found
+          </p>
+        )}
       </section>
       <ProductDetail />
       <CheckoutSideMenu />
