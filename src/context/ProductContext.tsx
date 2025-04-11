@@ -41,6 +41,11 @@ const ProductProvider = ({ children }: Props): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    if (searchProduct === "") {
+      setFilteredProducts(products);
+      return;
+    }
+
     const filteredProductsByTitle = products?.filter((product: ProductType) =>
       product.title.toLowerCase().includes(searchProduct),
     );
