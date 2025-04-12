@@ -6,7 +6,7 @@ import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSide
 import { ProductContext } from "../../context/ProductContext.tsx";
 
 export const Home = (): JSX.Element => {
-  const { searchProduct, setSearchProduct, filteredProducts } =
+  const { searchedProduct, setSearchedProduct, filteredProducts } =
     useContext(ProductContext);
 
   return (
@@ -16,8 +16,8 @@ export const Home = (): JSX.Element => {
         type="text"
         placeholder="Search product..."
         className="mb-8 w-96 rounded-lg border border-black p-4 text-black placeholder-gray-400 outline-none"
-        value={searchProduct}
-        onChange={(e) => setSearchProduct(e.target.value)}
+        value={searchedProduct}
+        onChange={(e) => setSearchedProduct(e.target.value)}
       />
       <section className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
         {filteredProducts?.length > 0 ? (

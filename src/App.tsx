@@ -14,6 +14,7 @@ import { ProductProvider } from "./context/ProductContext.tsx";
 const AppRoutes = (): JSX.Element | null => {
   const routes: RouteObject[] = [
     { path: "/", element: <Home /> },
+    { path: "/:category", element: <Home /> },
     { path: "/my-account", element: <MyAccount /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },
