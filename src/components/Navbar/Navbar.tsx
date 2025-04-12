@@ -25,17 +25,17 @@ const navLeft = [
     className: "",
   },
   {
-    to: "/furnitures",
-    text: "Furnitures",
+    to: "/furniture",
+    text: "Furniture",
     className: "",
   },
   {
-    to: "/toys",
-    text: "Toys",
+    to: "/shoes",
+    text: "Shoes",
     className: "",
   },
   {
-    to: "/others",
+    to: "/miscellaneous",
     text: "Others",
     className: "",
   },
