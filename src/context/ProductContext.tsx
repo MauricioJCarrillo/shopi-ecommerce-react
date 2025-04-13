@@ -47,7 +47,7 @@ const ProductProvider = ({ children }: Props): JSX.Element => {
     }
 
     const filteredProductsByTitle = products?.filter((product: ProductType) =>
-      product.title.toLowerCase().includes(searchedProduct),
+      product.title.toLowerCase().includes(searchedProduct.toLowerCase()),
     );
 
     setFilteredProducts(filteredProductsByTitle);
