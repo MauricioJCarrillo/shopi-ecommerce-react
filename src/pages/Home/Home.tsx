@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
+
 import { Card } from "../../components/Card/Card";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.tsx";
 import { ProductType } from "../../models/Products.tsx";
@@ -6,8 +8,19 @@ import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSide
 import { ProductContext } from "../../context/ProductContext.tsx";
 
 export const Home = (): JSX.Element => {
-  const { searchedProduct, setSearchedProduct, filteredProducts } =
+  const { searchedProduct, setSearchedProduct, filteredProductsByTitle } =
     useContext(ProductContext);
+
+  const { category } = useParams();
+
+  const filteredProductsByCategory = (category: string) =>
+    filteredProductsByTitle?.filter((product: ProductType) =>
+      product.category.name.toLowerCase().includes(category),
+    );
+
+  const filteredProducts = category
+    ? filteredProductsByCategory(category)
+    : filteredProductsByTitle;
 
   return (
     <>
