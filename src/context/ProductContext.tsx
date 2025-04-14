@@ -7,6 +7,7 @@ import {
 } from "react";
 import { ProductType } from "../models/Products";
 import { apiUrl } from "../api";
+// import data from "../data/data.json";
 
 type Props = {
   children: JSX.Element;
@@ -40,6 +41,8 @@ const ProductProvider = ({ children }: Props): JSX.Element => {
         return setProducts(data);
       })
       .catch((err) => console.error(err));
+    // console.log("data", data);
+    // setProducts(data);
   }, []);
 
   useEffect(() => {
