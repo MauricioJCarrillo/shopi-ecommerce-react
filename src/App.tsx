@@ -9,7 +9,6 @@ import { Navbar } from "./components/Navbar/Navbar.tsx";
 import { Layout } from "./components/Layout/Layout.tsx";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext.tsx";
 import { ProductProvider } from "./context/ProductContext.tsx";
-import { Footer } from "./components/Footer/Footer.tsx";
 
 // El valor de retorno de useRoutes puede ser JSX.Element | null, ya que useRoutes devolverá null si no hay rutas coincidentes
 const AppRoutes = (): JSX.Element | null => {
@@ -37,7 +36,6 @@ export const App = (): JSX.Element => {
           <Layout>
             <AppRoutes />
           </Layout>
-          <Footer />
         </BrowserRouter>
       </ProductProvider>
     </ShoppingCartProvider>

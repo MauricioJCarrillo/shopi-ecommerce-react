@@ -24,7 +24,7 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <h1 className="mb-6 text-2xl font-normal">Exclusive Products</h1>
+      <h1 className="mb-8 text-2xl font-normal">Exclusive Products</h1>
       <input
         type="text"
         placeholder="Search product..."
@@ -32,7 +32,7 @@ export const Home = (): JSX.Element => {
         value={searchedProduct}
         onChange={(e) => setSearchedProduct(e.target.value)}
       />
-      <section className="grid w-full max-w-screen-lg grid-cols-4 gap-4">
+      <section className="mb-8 grid w-full max-w-screen-lg grid-cols-4 gap-4">
         {filteredProducts?.length > 0 ? (
           filteredProducts?.map((product: ProductType) => {
             return <Card key={product.id} {...product} />;
